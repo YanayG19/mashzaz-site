@@ -128,7 +128,7 @@ a{color:#A9431E}a:hover{color:#7E2F12}
 </div>
 </section>
 
-<section style="max-width: 1200px; margin: 0 auto; padding: clamp(56px, 8vw, 96px) 20px">
+<section data-area="join" style="max-width: 1200px; margin: 0 auto; padding: clamp(56px, 8vw, 96px) 20px">
 <h2 style="margin: 0 0 32px; font-family: Rubik, Heebo, sans-serif; font-weight: 900; font-size: clamp(28px, 4.5vw, 44px); line-height: 1.15; text-align: center">איך מצטרפים?</h2>
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 16px">
 <div style="background: #FBF6EE; border: 1px solid #DCCFBB; border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 12px">
@@ -203,8 +203,46 @@ a{color:#A9431E}a:hover{color:#7E2F12}
 <a href="https://wa.me/972552930988?text=אשמח%20לשמוע%20עוד%20על%20השיעורים%20במה%20שזז" target="_blank" rel="noopener" style="color: #F4ECDF; min-height: 44px; display: inline-flex; align-items: center">ווטסאפ</a>
 </div>
 </div>
+<div style="max-width: 1200px; margin: 0 auto; padding: 0 20px 24px; font-size: 13px; line-height: 1.6; color: #D9CDBA; opacity: .85">
+<p style="margin: 0; border-top: 1px solid #2A241D; padding-top: 16px">פרטיות: האתר משתמש בכלי המדידה של Google (Analytics ו-Ads) ובעוגיות, כדי להבין איך מגיעים אלינו ובמה משתמשים באתר, ולשפר אותו. לא נאספים כאן שם, טלפון או מייל. אפשר לחסום עוגיות בהגדרות הדפדפן. <a href="https://policies.google.com/technologies/partner-sites?hl=iw" target="_blank" rel="noopener" style="color: #F4ECDF">איך Google משתמשת בנתונים</a></p>
+</div>
 </footer>
 
 </div>
+<script>
+/* מעקב לחיצות על כל הקישורים באתר -> Google Analytics */
+(function () {
+  function area(el) {
+    var box = el.closest('header, footer, section');
+    if (!box) return 'other';
+    if (box.tagName === 'HEADER') return 'header';
+    if (box.tagName === 'FOOTER') return 'footer';
+    if (box.id === 'top') return 'hero';
+    return box.id || box.getAttribute('data-area') || 'other';
+  }
+  function eventName(href) {
+    if (href.indexOf('wa.me') > -1) return 'click_whatsapp';
+    if (href.indexOf('arboxapp.com/group') > -1) return 'click_schedule';
+    if (href.indexOf('arboxapp.com/membership') > -1) return 'click_membership';
+    if (href.indexOf('instagram.com') > -1) return 'click_instagram';
+    if (href.indexOf('google.com/maps') > -1 || href.indexOf('waze.com') > -1) return 'click_directions';
+    if (href.indexOf('share.google') > -1) return 'click_google_profile';
+    if (href.charAt(0) === '#') return 'click_menu';
+    return 'click_other_link';
+  }
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href]');
+    if (!a || typeof gtag !== 'function') return;
+    var href = a.getAttribute('href');
+    var text = (a.textContent || '').replace(/\s+/g, ' ').trim() || a.getAttribute('aria-label') || '';
+    gtag('event', eventName(href), {
+      link_url: a.href,
+      link_text: text.slice(0, 100),
+      link_area: area(a),
+      transport_type: 'beacon'
+    });
+  });
+})();
+</script>
 </body>
 </html>
