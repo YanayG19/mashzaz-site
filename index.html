@@ -237,12 +237,20 @@ a{color:#A9431E}a:hover{color:#7E2F12}
     if (!a || typeof gtag !== 'function') return;
     var href = a.getAttribute('href');
     var text = (a.textContent || '').replace(/\s+/g, ' ').trim() || a.getAttribute('aria-label') || '';
-    gtag('event', eventName(href), {
+    var name = eventName(href);
+    gtag('event', name, {
       link_url: a.href,
       link_text: text.slice(0, 100),
       link_area: area(a),
       transport_type: 'beacon'
     });
+    /* המרת Google Ads "Contact": לחיצה על ווטסאפ */
+    if (name === 'click_whatsapp') {
+      gtag('event', 'conversion', {
+        send_to: 'AW-18576694667/V8K2CNSDz7wdEIu7h5pF',
+        transport_type: 'beacon'
+      });
+    }
   });
 })();
 </script>
