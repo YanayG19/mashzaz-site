@@ -227,7 +227,7 @@ footer .links{display:flex;flex-wrap:wrap;gap:4px 18px}
 <a class="btn ink" id="d-book" href="https://gznpuybe.web.arboxapp.com/group?whitelabel=Arbox&amp;lang=he&amp;location=22033&amp;referrer=SITE&amp;allLocations=false" target="_blank" rel="noopener">להרשמה לשיעור</a>
 <a class="btn line-ink" href="https://arbox.link/XlO23GN3" target="_blank" rel="noopener">שיעור היכרות ב-50 ₪</a>
 </div>
-<p class="note">ההרשמה מתבצעת במערכת ארבוקס. שם בוחרים את השיעור לפי היום והשעה.</p>
+<p class="note">ההרשמה מתבצעת במערכת ארבוקס, ישר בעמוד של השיעור הזה.</p>
 </div>
 </dialog>
 
@@ -249,6 +249,9 @@ footer .links{display:flex;flex-wrap:wrap;gap:4px 18px}
   var API = 'https://apiappv2.arboxapp.com/api/v2/site/schedule/betweenDates';
   var BOX = '24339', LOCATION = 22033;
   var WEEKS_AHEAD = 4;
+  var ARBOX = 'https://gznpuybe.web.arboxapp.com';
+  var ARBOX_Q = '?whitelabel=Arbox&lang=he&location=22033&referrer=SITE&allLocations=false';
+  var ARBOX_GROUP = ARBOX + '/group' + ARBOX_Q;
   var DAYS = ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'שבת'];
   var DAYS_SHORT = ['א׳', 'ב׳', 'ג׳', 'ד׳', 'ה׳', 'ו׳', 'ש׳'];
   var MONTHS = ['בינואר', 'בפברואר', 'במרץ', 'באפריל', 'במאי', 'ביוני', 'ביולי', 'באוגוסט', 'בספטמבר', 'באוקטובר', 'בנובמבר', 'בדצמבר'];
@@ -397,7 +400,7 @@ footer .links{display:flex;flex-wrap:wrap;gap:4px 18px}
     retry.type = 'button';
     retry.addEventListener('click', function () { show(offset); });
     var ext = el('a', 'btn ink', 'למערכת השעות בארבוקס');
-    ext.href = $('d-book').href; ext.target = '_blank'; ext.rel = 'noopener';
+    ext.href = ARBOX_GROUP; ext.target = '_blank'; ext.rel = 'noopener';
     var w = el('div', 'btns'); w.style.justifyContent = 'center';
     w.appendChild(retry); w.appendChild(ext);
     m.appendChild(w);
@@ -442,6 +445,7 @@ footer .links{display:flex;flex-wrap:wrap;gap:4px 18px}
     sp.innerHTML = '';
     if (s) sp.appendChild(el('span', 'pill ' + s.cls, s.text));
     $('d-bio').textContent = (cat.bio || '').trim();
+    $('d-book').href = c.id ? ARBOX + '/group/' + encodeURIComponent(c.id) + ARBOX_Q : ARBOX_GROUP; /* עמוד השיעור הספציפי בארבוקס */
     $('d-book').style.display = isPast(c) || (c.status && c.status !== 'active') ? 'none' : '';
     if (typeof dlg.showModal === 'function') dlg.showModal(); else dlg.setAttribute('open', '');
     if (typeof gtag === 'function') gtag('event', 'view_class', { class_name: cat.name || '', class_date: c.date, class_time: c.time });
