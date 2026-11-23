@@ -96,7 +96,7 @@ header.top nav{display:flex;align-items:center;gap:8px}
 .cls::before{content:"";position:absolute;inset:0 0 0 auto;width:7px;background:var(--c,#DCCFBB)}
 .cls:hover{transform:translateY(-2px);box-shadow:0 12px 24px -16px rgba(27,23,18,.45)}
 .cls:focus-visible{outline:3px solid var(--rust);outline-offset:2px}
-.cls .t{grid-row:span 3;font-family:Rubik,Heebo,sans-serif;font-weight:700;font-size:18px;line-height:1.15;text-align:center;min-width:58px;padding-inline-start:4px}
+.cls .t{direction:ltr;unicode-bidi:isolate;grid-row:span 3;font-family:Rubik,Heebo,sans-serif;font-weight:700;font-size:18px;line-height:1.15;text-align:center;min-width:58px;padding-inline-start:4px}
 .cls .t small{display:block;font-family:Heebo,sans-serif;font-weight:400;font-size:13px;color:var(--muted)}
 .cls .n{font-family:Rubik,Heebo,sans-serif;font-weight:700;font-size:17px;line-height:1.25}
 .cls .c{font-size:14px;color:var(--muted)}
@@ -119,7 +119,8 @@ header.top nav{display:flex;align-items:center;gap:8px}
   .day.today .dn{color:var(--rust)}
   .cls{grid-template-columns:1fr;padding:12px 12px 12px 12px;padding-inline-end:16px;gap:2px}
   .cls .t{grid-row:auto;text-align:right;font-size:15px;min-width:0;padding:0}
-  .cls .t small{display:inline;margin-inline-start:4px}
+  .cls .t small{display:inline}
+  .cls .t small::before{content:" – "}
   .cls .n{font-size:15.5px}
   .cls .c{font-size:13px}
   .none{font-size:13px;text-align:center;padding:12px 6px}
@@ -217,7 +218,7 @@ footer .links{display:flex;flex-wrap:wrap;gap:4px 18px}
 <h3 id="d-name"></h3>
 <div class="meta">
 <span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span id="d-date"></span></span>
-<span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span id="d-time"></span></span>
+<span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span id="d-time" dir="ltr"></span></span>
 <span id="d-coach-w"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg><span id="d-coach"></span></span>
 </div>
 <div id="d-spots" style="margin-top:12px"></div>
@@ -470,7 +471,7 @@ footer .links{display:flex;flex-wrap:wrap;gap:4px 18px}
   function eventName(href) {
     if (href.indexOf('wa.me') > -1) return 'click_whatsapp';
     if (href.indexOf('arbox.link/XlO23GN3') > -1) return 'click_trial';
-    if (href.indexOf('arboxapp.com/group') > -1) return 'click_schedule';
+    if (href.indexOf('arboxapp.com/group') > -1) return 'click_book_class';
     if (href.indexOf('arboxapp.com/membership') > -1) return 'click_membership';
     if (href.indexOf('instagram.com') > -1) return 'click_instagram';
     if (href.charAt(0) === '#' || href.charAt(0) === '/') return 'click_menu';
