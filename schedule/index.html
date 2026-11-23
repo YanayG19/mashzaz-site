@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<!-- Google tag: Google Analytics (GTM-56CHQFCM) + Google Ads (AW-18576694667) -->
+<script async src="https://www.googletagmanager.com/gtm.js?id=GTM-56CHQFCM"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18576694667"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-18576694667');
+</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>מערכת השעות – מה שזז</title>
+<meta name="description" content="מערכת השעות השבועית של מה שזז, סטודיו לתנועה בתל אביב: מובמנט, יוגה, אימון פונקציונאלי, עמידות ידיים, מחול מודרני ועוד. בוחרים שיעור ונרשמים אונליין.">
+<link rel="canonical" href="https://mashzaz.co.il/schedule/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="he_IL">
+<meta property="og:site_name" content="מה שזז">
+<meta property="og:title" content="מערכת השעות – מה שזז">
+<meta property="og:description" content="כל השיעורים של השבוע במקום אחד. בוחרים שיעור ונרשמים אונליין.">
+<meta property="og:url" content="https://mashzaz.co.il/schedule/">
+<meta property="og:image" content="https://mashzaz.co.il/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#F4ECDF">
+<link rel="icon" type="image/png" href="/assets/favicon.png">
+<link rel="apple-touch-icon" href="/assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://apiappv2.arboxapp.com">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700&amp;family=Rubik:wght@500;700;900&amp;display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F4ECDF; --ink:#1B1712; --rust:#A9431E; --rust-h:#7E2F12; --muted:#4A4238;
+  --card:#FBF6EE; --dark:#2A241D; --on-dark:#D9CDBA; --line:#DCCFBB; --soft:#EADFCC;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Heebo,Arial,sans-serif;line-height:1.5}
+a{color:var(--rust)}a:hover{color:var(--rust-h)}
+button{font:inherit;color:inherit}
+.wrap{max-width:1280px;margin:0 auto;padding:0 20px}
+.h{font-family:Rubik,Heebo,sans-serif}
+
+/* כותרת עליונה */
+header.top{position:sticky;top:0;z-index:20;background:var(--paper);border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:10px;padding-bottom:10px}
+header.top nav{display:flex;align-items:center;gap:8px}
+.navlink{color:var(--ink);text-decoration:none;font-weight:500;padding:10px 12px;min-height:44px;display:inline-flex;align-items:center}
+.navlink:hover{color:var(--rust)}
+.wa{color:var(--ink);border:1.5px solid var(--ink);border-radius:50%;width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;flex:none}
+.wa:hover{color:var(--rust);border-color:var(--rust)}
+
+/* פתיח */
+.intro{padding:clamp(24px,5vw,48px) 0 8px}
+.intro h1{margin:0;font-weight:900;font-size:clamp(34px,7vw,60px);line-height:1.05;letter-spacing:-.5px}
+.intro p{margin:10px 0 0;color:var(--muted);font-size:clamp(16px,2.4vw,18px);max-width:640px}
+
+/* ניווט בין שבועות */
+.weekbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:22px 0 4px;flex-wrap:wrap}
+.range{font-family:Rubik,Heebo,sans-serif;font-weight:700;font-size:clamp(18px,3vw,22px)}
+.range small{display:block;font-family:Heebo,sans-serif;font-weight:500;font-size:14px;color:var(--muted)}
+.wnav{display:flex;align-items:center;gap:8px}
+.wbtn{min-width:44px;height:44px;border-radius:999px;border:1.5px solid var(--ink);background:transparent;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;padding:0 14px;font-weight:700;font-size:15px}
+.wbtn:hover:not(:disabled){background:var(--ink);color:var(--paper)}
+.wbtn:disabled{opacity:.3;cursor:default}
+.wbtn.now{background:var(--ink);color:var(--paper)}
+.wbtn.now[aria-pressed="false"]{background:transparent;color:var(--ink)}
+
+/* פס ימים (טלפון) */
+.days{position:sticky;top:65px;z-index:15;background:var(--paper);margin:12px -20px 0;padding:10px 20px;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid var(--line)}
+.days::-webkit-scrollbar{display:none}
+.chip{flex:1 0 44px;min-height:60px;border-radius:16px;border:1.5px solid var(--line);background:var(--card);display:flex;flex-direction:column;align-items:center;justify-content:center;text-decoration:none;color:var(--ink);gap:0;padding:4px 2px}
+.chip b{font-family:Rubik,Heebo,sans-serif;font-size:19px;line-height:1.1}
+.chip span{font-size:13px;color:var(--muted)}
+.chip i{width:5px;height:5px;border-radius:50%;background:var(--rust);margin-top:3px;font-style:normal}
+.chip.empty i{background:transparent}
+.chip.today{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.chip.today span{color:var(--on-dark)}
+.chip.today i{background:#E9A27F}
+.chip.past{opacity:.5}
+
+/* לוח */
+.board{display:flex;flex-direction:column;gap:6px;padding:8px 0 40px}
+.day{scroll-margin-top:150px;padding-top:18px}
+.dayhead{display:flex;align-items:baseline;gap:10px;margin:0 0 10px;font-family:Rubik,Heebo,sans-serif}
+.dayhead .dn{font-weight:900;font-size:24px}
+.dayhead .dd{font-weight:500;font-size:15px;color:var(--muted);font-family:Heebo,sans-serif}
+.dayhead .tag{font-family:Heebo,sans-serif;font-size:12px;font-weight:700;background:var(--rust);color:#fff;border-radius:999px;padding:2px 10px;align-self:center}
+.list{display:flex;flex-direction:column;gap:10px}
+.none{color:var(--muted);font-size:15px;padding:14px 16px;border:1.5px dashed var(--line);border-radius:18px}
+
+.cls{position:relative;display:grid;grid-template-columns:auto 1fr;gap:4px 14px;align-items:center;text-align:right;width:100%;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:14px 16px 14px 14px;cursor:pointer;overflow:hidden;transition:transform .15s ease, box-shadow .15s ease}
+.cls::before{content:"";position:absolute;inset:0 0 0 auto;width:7px;background:var(--c,#DCCFBB)}
+.cls:hover{transform:translateY(-2px);box-shadow:0 12px 24px -16px rgba(27,23,18,.45)}
+.cls:focus-visible{outline:3px solid var(--rust);outline-offset:2px}
+.cls .t{grid-row:span 3;font-family:Rubik,Heebo,sans-serif;font-weight:700;font-size:18px;line-height:1.15;text-align:center;min-width:58px;padding-inline-start:4px}
+.cls .t small{display:block;font-family:Heebo,sans-serif;font-weight:400;font-size:13px;color:var(--muted)}
+.cls .n{font-family:Rubik,Heebo,sans-serif;font-weight:700;font-size:17px;line-height:1.25}
+.cls .c{font-size:14px;color:var(--muted)}
+.pill{justify-self:start;font-size:12.5px;font-weight:700;border-radius:999px;padding:2px 10px;margin-top:2px}
+.pill.few{background:#F6DCCF;color:var(--rust-h)}
+.pill.full{background:var(--ink);color:var(--paper)}
+.pill.off{background:var(--soft);color:var(--muted)}
+.cls.past{opacity:.48}
+.cls.past:hover{transform:none;box-shadow:none}
+.cls.cancel .n{text-decoration:line-through}
+
+/* מחשב: 7 עמודות */
+@media (min-width: 960px){
+  .days{display:none}
+  .board{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:12px;align-items:start}
+  .day{padding-top:14px;scroll-margin-top:0}
+  .dayhead{flex-direction:column;align-items:center;gap:2px;padding:10px 0 12px;border-bottom:2px solid var(--ink);margin-bottom:12px}
+  .dayhead .dn{font-size:20px}
+  .day.today .dayhead{border-color:var(--rust)}
+  .day.today .dn{color:var(--rust)}
+  .cls{grid-template-columns:1fr;padding:12px 12px 12px 12px;padding-inline-end:16px;gap:2px}
+  .cls .t{grid-row:auto;text-align:right;font-size:15px;min-width:0;padding:0}
+  .cls .t small{display:inline;margin-inline-start:4px}
+  .cls .n{font-size:15.5px}
+  .cls .c{font-size:13px}
+  .none{font-size:13px;text-align:center;padding:12px 6px}
+}
+
+/* קריאה לפעולה */
+.cta{background:var(--dark);color:var(--on-dark);border-radius:28px;padding:clamp(22px,4vw,36px);margin:8px 0 48px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px}
+.cta h2{margin:0;color:var(--paper);font-weight:900;font-size:clamp(22px,3.6vw,30px);line-height:1.15}
+.cta p{margin:6px 0 0}
+.btns{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:12px 22px;border-radius:999px;font-weight:700;font-size:16.5px;text-decoration:none;border:2px solid transparent;cursor:pointer}
+.btn.rust{background:var(--rust);color:#fff}.btn.rust:hover{background:var(--rust-h);color:#fff}
+.btn.ink{background:var(--ink);color:var(--paper)}.btn.ink:hover{background:#000;color:var(--paper)}
+.btn.line{border-color:var(--paper);color:var(--paper);background:transparent}.btn.line:hover{background:var(--paper);color:var(--ink)}
+.btn.line-ink{border-color:var(--ink);color:var(--ink);background:transparent}.btn.line-ink:hover{background:var(--ink);color:var(--paper)}
+
+/* טעינה / שגיאה */
+.msg{grid-column:1/-1;text-align:center;padding:40px 16px;color:var(--muted)}
+.msg .btn{margin-top:14px}
+.sk{height:84px;border-radius:20px;background:linear-gradient(90deg,var(--soft),var(--card),var(--soft));background-size:200% 100%;animation:sh 1.2s infinite linear}
+@keyframes sh{to{background-position:-200% 0}}
+
+/* חלון פרטי שיעור */
+dialog{border:none;padding:0;background:var(--card);color:var(--ink);width:min(560px,100%);max-height:88vh;border-radius:28px;box-shadow:0 30px 60px -20px rgba(27,23,18,.5)}
+dialog::backdrop{background:rgba(27,23,18,.55)}
+@media (max-width: 640px){
+  dialog{margin:auto 0 0;max-width:100%;width:100%;border-radius:28px 28px 0 0;max-height:85vh}
+}
+.sheet{padding:22px 22px 24px;overflow:auto;max-height:inherit}
+.sheet .bar{height:8px;border-radius:999px;background:var(--c,#DCCFBB);width:64px;margin-bottom:16px}
+.sheet h3{margin:0;font-family:Rubik,Heebo,sans-serif;font-weight:900;font-size:26px;line-height:1.15}
+.meta{display:flex;flex-wrap:wrap;gap:8px 18px;margin:12px 0 0;color:var(--muted);font-size:15px}
+.meta span{display:inline-flex;align-items:center;gap:6px}
+.bio{margin:16px 0 0;white-space:pre-line;font-size:16px}
+.sheet .btns{margin-top:20px}
+.sheet .btn{flex:1 1 200px}
+.x{position:absolute;top:12px;left:12px;width:44px;height:44px;border-radius:50%;border:none;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.x:hover{background:var(--soft)}
+.note{margin:14px 0 0;font-size:13.5px;color:var(--muted)}
+
+footer{background:var(--ink);color:var(--on-dark);font-size:15px}
+footer .wrap{padding-top:24px;padding-bottom:24px;display:flex;flex-wrap:wrap;gap:8px 18px;justify-content:space-between;align-items:center}
+footer a{color:var(--paper);min-height:44px;display:inline-flex;align-items:center}
+footer .links{display:flex;flex-wrap:wrap;gap:4px 18px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<header class="top">
+<div class="wrap">
+<a href="/" aria-label="מה שזז – לדף הבית" style="display:flex;align-items:center"><img src="/assets/logo.png" alt="מה שזז – Movement community" style="height:44px;width:auto;display:block"></a>
+<nav aria-label="ניווט ראשי">
+<a class="navlink" href="/#classes">השיעורים</a>
+<a class="wa" href="https://wa.me/972552930988?text=אשמח%20לשמוע%20עוד%20על%20השיעורים%20במה%20שזז" target="_blank" rel="noopener" aria-label="כתבו לנו בווטסאפ" title="ווטסאפ"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21l1.65-4.5A9 9 0 1 1 8 20z"></path><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1.5-1.5-2-1-1 1c-1-.5-2-1.5-2.5-2.5l1-1-1-2z"></path></svg></a>
+</nav>
+</div>
+</header>
+
+<main id="schedule" class="wrap">
+<section class="intro" aria-labelledby="ttl">
+<h1 id="ttl" class="h">מערכת השעות</h1>
+<p>כל השיעורים של השבוע במקום אחד. לוחצים על שיעור כדי לקרוא עליו ולהירשם.</p>
+</section>
+
+<div class="weekbar">
+<div class="range" id="range" aria-live="polite">&nbsp;</div>
+<div class="wnav">
+<button class="wbtn" id="prev" aria-label="לשבוע הקודם"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+<button class="wbtn now" id="thisweek" aria-pressed="true">השבוע</button>
+<button class="wbtn" id="next" aria-label="לשבוע הבא"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+</div>
+</div>
+
+<nav class="days" id="days" aria-label="ימי השבוע"></nav>
+<div class="board" id="board" aria-busy="true"></div>
+
+<section class="cta" data-area="schedule_cta">
+<div>
+<h2 class="h">חדשים אצלנו?</h2>
+<p>מתחילים בשיעור היכרות ב-50 ₪. כל אחד מתקדם בקצב שלו.</p>
+</div>
+<div class="btns">
+<a class="btn rust" href="https://arbox.link/XlO23GN3" target="_blank" rel="noopener">שיעור היכרות ב-50 ₪</a>
+<a class="btn line" href="https://gznpuybe.web.arboxapp.com/membership?whitelabel=Arbox&amp;lang=he&amp;location=22033&amp;referrer=SITE&amp;allLocations=false" target="_blank" rel="noopener">כרטיסיות ומנויים</a>
+</div>
+</section>
+</main>
+
+<dialog id="dlg" aria-labelledby="d-name">
+<div class="sheet" data-area="class_details">
+<button class="x" id="d-x" aria-label="סגירה"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+<div class="bar" id="d-bar"></div>
+<h3 id="d-name"></h3>
+<div class="meta">
+<span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span id="d-date"></span></span>
+<span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span id="d-time"></span></span>
+<span id="d-coach-w"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg><span id="d-coach"></span></span>
+</div>
+<div id="d-spots" style="margin-top:12px"></div>
+<p class="bio" id="d-bio"></p>
+<div class="btns">
+<a class="btn ink" id="d-book" href="https://gznpuybe.web.arboxapp.com/group?whitelabel=Arbox&amp;lang=he&amp;location=22033&amp;referrer=SITE&amp;allLocations=false" target="_blank" rel="noopener">להרשמה לשיעור</a>
+<a class="btn line-ink" href="https://arbox.link/XlO23GN3" target="_blank" rel="noopener">שיעור היכרות ב-50 ₪</a>
+</div>
+<p class="note">ההרשמה מתבצעת במערכת ארבוקס. שם בוחרים את השיעור לפי היום והשעה.</p>
+</div>
+</dialog>
+
+<footer>
+<div class="wrap">
+<span>מה שזז – Movement community · בן שמן 4, תל אביב</span>
+<div class="links">
+<a href="/">לאתר</a>
+<a href="https://gznpuybe.web.arboxapp.com/membership?whitelabel=Arbox&amp;lang=he&amp;location=22033&amp;referrer=SITE&amp;allLocations=false" target="_blank" rel="noopener">כרטיסיות ומנויים</a>
+<a href="https://www.instagram.com/ma_shzaz" target="_blank" rel="noopener">אינסטגרם</a>
+<a href="https://wa.me/972552930988?text=אשמח%20לשמוע%20עוד%20על%20השיעורים%20במה%20שזז" target="_blank" rel="noopener">ווטסאפ</a>
+</div>
+</div>
+</footer>
+
+<script>
+/* מערכת השעות: נטען בכל כניסה ישירות מארבוקס ומוצג בתצוגה שבועית */
+(function () {
+  var API = 'https://apiappv2.arboxapp.com/api/v2/site/schedule/betweenDates';
+  var BOX = '24339', LOCATION = 22033;
+  var WEEKS_AHEAD = 4;
+  var DAYS = ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'שבת'];
+  var DAYS_SHORT = ['א׳', 'ב׳', 'ג׳', 'ד׳', 'ה׳', 'ו׳', 'ש׳'];
+  var MONTHS = ['בינואר', 'בפברואר', 'במרץ', 'באפריל', 'במאי', 'ביוני', 'ביולי', 'באוגוסט', 'בספטמבר', 'באוקטובר', 'בנובמבר', 'בדצמבר'];
+
+  var $ = function (id) { return document.getElementById(id); };
+  var board = $('board'), daysNav = $('days'), range = $('range');
+  var cache = {}, offset = 0, current = [];
+
+  /* תאריכים לפי שעון ישראל */
+  function todayISO() {
+    try { return new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Jerusalem' }).format(new Date()); }
+    catch (e) { var d = new Date(); return iso(new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()))); }
+  }
+  function parse(s) { var p = s.split('-'); return new Date(Date.UTC(+p[0], +p[1] - 1, +p[2])); }
+  function iso(d) { return d.toISOString().slice(0, 10); }
+  function add(d, n) { return new Date(d.getTime() + n * 864e5); }
+  function nowHM() {
+    try { return new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Jerusalem', hour: '2-digit', minute: '2-digit', hour12: false }).format(new Date()); }
+    catch (e) { return ''; }
+  }
+  var TODAY = todayISO();
+  var WEEK0 = add(parse(TODAY), -parse(TODAY).getUTCDay()); /* יום ראשון של השבוע הנוכחי */
+
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text != null) e.textContent = text;
+    return e;
+  }
+  function dayLabel(d) { return d.getUTCDate() + ' ' + MONTHS[d.getUTCMonth()]; }
+
+  function load(start) {
+    var key = iso(start);
+    if (cache[key]) return cache[key];
+    cache[key] = fetch(API, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', boxFk: BOX, whiteLabel: 'Arbox', newSite: '1', lang: 'he', version: '10', refererName: 'site' },
+      body: JSON.stringify({ from: key, to: iso(add(start, 6)), locations_box_id: LOCATION })
+    }).then(function (r) {
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json();
+    }).then(function (j) {
+      return (j && j.data || []).slice().sort(function (a, b) {
+        return (a.date + a.time).localeCompare(b.date + b.time);
+      });
+    }).catch(function (e) { delete cache[key]; throw e; });
+    return cache[key];
+  }
+
+  function skeleton() {
+    board.innerHTML = '';
+    board.setAttribute('aria-busy', 'true');
+    for (var i = 0; i < 7; i++) {
+      var d = el('div', 'day'); var l = el('div', 'list');
+      l.appendChild(el('div', 'sk')); if (i % 2 === 0) l.appendChild(el('div', 'sk'));
+      d.appendChild(l); board.appendChild(d);
+    }
+  }
+
+  function spots(c) {
+    if (c.status && c.status !== 'active') return { cls: 'off', text: 'בוטל' };
+    if (isPast(c)) return { cls: 'off', text: 'הסתיים' };
+    var free = +c.free;
+    if (isFinite(free) && free <= 0) return { cls: 'full', text: c.stand_by ? 'מלא · יש רשימת המתנה' : 'מלא' };
+    if (isFinite(free) && free <= 3) return { cls: 'few', text: free === 1 ? 'נשאר מקום אחד' : 'נשארו ' + free + ' מקומות' };
+    return null;
+  }
+  function isPast(c) {
+    if (c.date < TODAY) return true;
+    if (c.date > TODAY) return false;
+    var n = nowHM();
+    return n ? (c.end_time || c.time) <= n : +c.past === 1;
+  }
+  function coachName(c) {
+    var names = [c.coach, c.second_coach].filter(Boolean).map(function (p) {
+      return p.full_name || [p.first_name, p.last_name].filter(Boolean).join(' ');
+    }).filter(Boolean);
+    return names.join(' ו');
+  }
+
+  function card(c) {
+    var b = el('button', 'cls');
+    b.type = 'button';
+    var cat = c.box_categories || {};
+    if (cat.category_color) b.style.setProperty('--c', cat.category_color);
+    if (isPast(c)) b.classList.add('past');
+    if (c.status && c.status !== 'active') b.classList.add('cancel');
+    var t = el('div', 't', c.time);
+    t.appendChild(el('small', null, c.end_time));
+    b.appendChild(t);
+    b.appendChild(el('div', 'n', cat.name || 'שיעור'));
+    var coach = coachName(c);
+    if (coach) b.appendChild(el('div', 'c', coach));
+    var s = spots(c);
+    if (s) b.appendChild(el('span', 'pill ' + s.cls, s.text));
+    b.setAttribute('aria-label', (cat.name || 'שיעור') + ', ' + c.time + '–' + c.end_time + (coach ? ', עם ' + coach : '') + (s ? ', ' + s.text : ''));
+    b.addEventListener('click', function () { openDetails(c); });
+    return b;
+  }
+
+  function render(list, start) {
+    board.innerHTML = ''; daysNav.innerHTML = '';
+    board.setAttribute('aria-busy', 'false');
+    var byDay = {};
+    list.forEach(function (c) { (byDay[c.date] = byDay[c.date] || []).push(c); });
+
+    for (var i = 0; i < 7; i++) {
+      var d = add(start, i), key = iso(d), items = byDay[key] || [];
+      var isToday = key === TODAY, past = key < TODAY;
+
+      var sec = el('section', 'day' + (isToday ? ' today' : ''));
+      sec.id = 'd-' + key;
+      sec.setAttribute('data-area', 'schedule');
+      var h = el('h2', 'dayhead');
+      h.appendChild(el('span', 'dn', 'יום ' + DAYS[i]));
+      h.appendChild(el('span', 'dd', dayLabel(d)));
+      if (isToday) h.appendChild(el('span', 'tag', 'היום'));
+      sec.appendChild(h);
+      var l = el('div', 'list');
+      if (!items.length) l.appendChild(el('div', 'none', 'אין שיעורים ביום הזה'));
+      items.forEach(function (c) { l.appendChild(card(c)); });
+      sec.appendChild(l);
+      board.appendChild(sec);
+
+      var chip = el('a', 'chip' + (isToday ? ' today' : '') + (past ? ' past' : '') + (items.length ? '' : ' empty'));
+      chip.href = '#d-' + key;
+      chip.setAttribute('aria-label', 'יום ' + DAYS[i] + ' ' + dayLabel(d) + ', ' + (items.length || 'אין') + ' שיעורים');
+      chip.appendChild(el('span', null, DAYS_SHORT[i]));
+      chip.appendChild(el('b', null, d.getUTCDate()));
+      chip.appendChild(el('i'));
+      daysNav.appendChild(chip);
+    }
+    if (!list.length) {
+      var m = el('div', 'msg');
+      m.appendChild(el('p', null, offset > 0 ? 'מערכת השעות לשבוע הזה עוד לא פורסמה. כדאי לבדוק שוב בהמשך.' : 'אין שיעורים בשבוע הזה.'));
+      board.insertBefore(m, board.firstChild);
+    }
+  }
+
+  function error(start) {
+    board.innerHTML = ''; daysNav.innerHTML = '';
+    board.setAttribute('aria-busy', 'false');
+    var m = el('div', 'msg');
+    m.appendChild(el('p', null, 'לא הצלחנו לטעון את מערכת השעות כרגע.'));
+    var retry = el('button', 'btn line-ink', 'לנסות שוב');
+    retry.type = 'button';
+    retry.addEventListener('click', function () { show(offset); });
+    var ext = el('a', 'btn ink', 'למערכת השעות בארבוקס');
+    ext.href = $('d-book').href; ext.target = '_blank'; ext.rel = 'noopener';
+    var w = el('div', 'btns'); w.style.justifyContent = 'center';
+    w.appendChild(retry); w.appendChild(ext);
+    m.appendChild(w);
+    board.appendChild(m);
+  }
+
+  function show(off, first) {
+    offset = off;
+    var start = add(WEEK0, off * 7), end = add(start, 6);
+    range.innerHTML = '';
+    range.appendChild(document.createTextNode(start.getUTCDate() + (start.getUTCMonth() !== end.getUTCMonth() ? ' ' + MONTHS[start.getUTCMonth()] : '') + ' – ' + dayLabel(end)));
+    range.appendChild(el('small', null, off === 0 ? 'השבוע' : off === 1 ? 'שבוע הבא' : off === -1 ? 'שבוע שעבר' : 'בעוד ' + off + ' שבועות'));
+    $('prev').disabled = off <= 0;
+    $('next').disabled = off >= WEEKS_AHEAD;
+    $('thisweek').setAttribute('aria-pressed', off === 0 ? 'true' : 'false');
+    skeleton();
+    load(start).then(function (list) {
+      if (off !== offset) return;
+      current = list;
+      render(list, start);
+      if (first && off === 0 && window.matchMedia('(max-width: 959px)').matches) {
+        var t = document.getElementById('d-' + TODAY);
+        if (t && TODAY !== iso(start)) setTimeout(function () { t.scrollIntoView({ block: 'start' }); }, 60);
+      }
+      if (off < WEEKS_AHEAD) load(add(start, 7)).catch(function () {}); /* טעינה מוקדמת של השבוע הבא */
+    }).catch(function () { if (off === offset) error(start); });
+  }
+
+  /* חלון פרטים */
+  var dlg = $('dlg');
+  function openDetails(c) {
+    var cat = c.box_categories || {};
+    var d = parse(c.date);
+    $('d-bar').style.setProperty('--c', cat.category_color || '#DCCFBB');
+    $('d-name').textContent = cat.name || 'שיעור';
+    $('d-date').textContent = 'יום ' + DAYS[d.getUTCDay()] + ', ' + dayLabel(d);
+    $('d-time').textContent = c.time + '–' + c.end_time;
+    var coach = coachName(c);
+    $('d-coach').textContent = coach;
+    $('d-coach-w').style.display = coach ? '' : 'none';
+    var s = spots(c), sp = $('d-spots');
+    sp.innerHTML = '';
+    if (s) sp.appendChild(el('span', 'pill ' + s.cls, s.text));
+    $('d-bio').textContent = (cat.bio || '').trim();
+    $('d-book').style.display = isPast(c) || (c.status && c.status !== 'active') ? 'none' : '';
+    if (typeof dlg.showModal === 'function') dlg.showModal(); else dlg.setAttribute('open', '');
+    if (typeof gtag === 'function') gtag('event', 'view_class', { class_name: cat.name || '', class_date: c.date, class_time: c.time });
+  }
+  function close() { if (dlg.close) dlg.close(); else dlg.removeAttribute('open'); }
+  $('d-x').addEventListener('click', close);
+  dlg.addEventListener('click', function (e) { if (e.target === dlg) close(); });
+
+  $('prev').addEventListener('click', function () { show(Math.max(0, offset - 1)); });
+  $('next').addEventListener('click', function () { show(Math.min(WEEKS_AHEAD, offset + 1)); });
+  $('thisweek').addEventListener('click', function () { show(0, true); });
+
+  show(0, true);
+})();
+</script>
+
+<script>
+/* מעקב לחיצות על כל הקישורים בדף -> Google Analytics (אותם שמות אירועים כמו בדף הבית) */
+(function () {
+  function area(el) {
+    var box = el.closest('header, footer, section, [data-area]');
+    if (!box) return 'other';
+    if (box.tagName === 'HEADER') return 'schedule_header';
+    if (box.tagName === 'FOOTER') return 'schedule_footer';
+    return box.getAttribute('data-area') || box.id || 'other';
+  }
+  function eventName(href) {
+    if (href.indexOf('wa.me') > -1) return 'click_whatsapp';
+    if (href.indexOf('arbox.link/XlO23GN3') > -1) return 'click_trial';
+    if (href.indexOf('arboxapp.com/group') > -1) return 'click_schedule';
+    if (href.indexOf('arboxapp.com/membership') > -1) return 'click_membership';
+    if (href.indexOf('instagram.com') > -1) return 'click_instagram';
+    if (href.charAt(0) === '#' || href.charAt(0) === '/') return 'click_menu';
+    return 'click_other_link';
+  }
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href]');
+    if (!a || typeof gtag !== 'function') return;
+    var href = a.getAttribute('href');
+    var text = (a.textContent || '').replace(/\s+/g, ' ').trim() || a.getAttribute('aria-label') || '';
+    var name = eventName(href);
+    if (name === 'click_menu' && href.indexOf('#d-') === 0) return; /* פס הימים – לא נמדד */
+    var params = { link_url: a.href, link_text: text.slice(0, 100), link_area: area(a), transport_type: 'beacon' };
+    if (a.id === 'd-book') params.class_name = document.getElementById('d-name').textContent;
+    gtag('event', name, params);
+    /* המרת Google Ads "Contact": לחיצה על ווטסאפ */
+    if (name === 'click_whatsapp') {
+      gtag('event', 'conversion', { send_to: 'AW-18576694667/V8K2CNSDz7wdEIu7h5pF', transport_type: 'beacon' });
+    }
+  });
+})();
+</script>
+</body>
+</html>
