@@ -197,6 +197,19 @@ a{color:#A9431E}a:hover{color:#7E2F12}
 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l18-8-8 18-2-8z"></path></svg>
 ניווט ב-Waze</a>
 </div>
+<div style="margin-top: 8px; background: #FBF6EE; border: 1px solid #DCCFBB; border-radius: 22px; padding: 20px; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 20px">
+<div style="flex: 1 1 220px; min-width: 0; display: flex; flex-direction: column; gap: 10px">
+<span style="display: inline-flex; align-items: center; gap: 8px; font-weight: 700; font-size: 15px; color: #A9431E">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="13" height="14" rx="3"></rect><path d="M16 10l5-3v10l-5-3z"></path></svg>
+סרטון הגעה · פחות מדקה</span>
+<h3 style="margin: 0; font-family: Rubik, Heebo, sans-serif; font-weight: 700; font-size: clamp(22px, 3vw, 26px); line-height: 1.2">הגעתם לבן שמן 4? ככה נכנסים</h3>
+<p style="margin: 0; color: #4A4238; font-size: 17px">סרטון קצר שמראה את הדרך מהרחוב ועד לדלת הסטודיו, כדי שלא תצטרכו לחפש.</p>
+</div>
+<video id="arrival-video" controls preload="none" playsinline poster="assets/arrival-poster.jpg" aria-label="סרטון: איך נכנסים לסטודיו מה שזז מהכניסה בבן שמן 4" style="flex: 0 0 auto; width: min(100%, 240px); aspect-ratio: 9 / 16; object-fit: cover; border-radius: 16px; background: #1B1712; display: block; box-shadow: 0 12px 28px -16px rgba(27, 23, 18, .6)">
+<source src="assets/arrival.mp4" type="video/mp4">
+<a href="assets/arrival.mp4">לצפייה בסרטון ההגעה</a>
+</video>
+</div>
 </div>
 
 </div>
@@ -260,6 +273,19 @@ a{color:#A9431E}a:hover{color:#7E2F12}
       });
     }
   });
+  /* סרטון ההגעה: הפעלה וצפייה עד הסוף */
+  var v = document.getElementById('arrival-video');
+  if (v) {
+    var played = false;
+    v.addEventListener('play', function () {
+      if (played || typeof gtag !== 'function') return;
+      played = true;
+      gtag('event', 'play_arrival_video', { link_area: 'contact' });
+    });
+    v.addEventListener('ended', function () {
+      if (typeof gtag === 'function') gtag('event', 'complete_arrival_video', { link_area: 'contact' });
+    });
+  }
 })();
 </script>
 </body>
